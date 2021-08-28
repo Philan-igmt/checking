@@ -3,23 +3,28 @@
         <h1 class="login-heading text-success">
         Login
     </h1>
-        <mat-form-field class="example-full-width" appearance="fill">
+    <form [formGroup]="registerForm">
+      <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="chulumanco@cyadla.food">
-          </mat-form-field>
+            <input type="email" matInput placeholder="chulumanco@cyadla.food" formControlName="email">
+            <p *ngIf="registerForm.controls.email.errors">Please make sure your email is correct!</p>
+          </mat-form-field>   
           <br>
           <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
             <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </span>
-          </mat-form-field>
-          <br>
-          <div class="sub-btn"> 
-            <button type="button" class="btn btn-success btn-sm btn-rounded">Submit</button>
+          </mat-form-field>   <br>  <div class="sub-btn"> 
+            <button type="button" (click)="onSubmit()" class="btn btn-success btn-sm btn-rounded">Submit</button>
           <a type="button" href="/resetpassowrd" class="btn btn-primary btn-sm btn-rounded">Reset Passowrd</a>
           </div>
+    </form>
+      
+          
+       
+       
           <div class="question">
               <p>Don't have an account?<a href="/register">Register</a></p>
           </div>

@@ -63,6 +63,10 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatCardModule } from '@angular/material/card';
 import { PageNotFoundComponentComponent } from './component/page-not-found-component/page-not-found-component.component';
+import { ReactiveFormsModule } from '@angular/forms'
+import { 
+  AuthGuardService as AuthGuard 
+} from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -109,6 +113,7 @@ import { PageNotFoundComponentComponent } from './component/page-not-found-compo
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -135,7 +140,7 @@ import { PageNotFoundComponentComponent } from './component/page-not-found-compo
     MatCardModule
     
   ],
-  providers: [],
+  providers: [ AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
