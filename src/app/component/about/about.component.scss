@@ -1,0 +1,45 @@
+.about{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 70vh;
+}
+.left{
+    width: 30%;
+}
+.right{
+    height: 100%;
+    width: 42%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+}
+
+.img1,.img2,.img3{
+    width: 200px;
+    height: 200px;
+}
+
+.img1{
+    align-self: flex-end;
+}
+.img2{
+    align-self: center;
+}
+.img1 img,.img2 img,.img3 img{
+    width: 100%;
+    height: 100%;
+}
+.heading{
+    font-size: 61px;
+    position: absolute;
+    width: 40%;
+    top: 30%;
+    line-height: 1;
+    color: green;
+}
+.desc{
+    position: absolute;
+    width: 26%;
+    top: 49%;
+}

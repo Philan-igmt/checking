@@ -1,0 +1,27 @@
+<div class="login">
+    <div class="login-form"> 
+        <h1 class="login-heading text-success">
+        Login
+    </h1>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="chulumanco@cyadla.food">
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </span>
+          </mat-form-field>
+          <br>
+          <div class="sub-btn"> 
+            <button type="button" class="btn btn-success btn-sm btn-rounded">Submit</button>
+          <a type="button" href="/resetpassowrd" class="btn btn-primary btn-sm btn-rounded">Reset Passowrd</a>
+          </div>
+          <div class="question">
+              <p>Don't have an account?<a href="/register">Register</a></p>
+          </div>
+          </div>
+</div>

@@ -1,0 +1,30 @@
+.login{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+.login-heading{
+    text-align: center;
+}
+.login-form{
+    width: 30%;
+    height: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    position: absolute;
+    top: 30%;
+}
+.sub-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.question{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

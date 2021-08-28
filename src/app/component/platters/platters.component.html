@@ -1,0 +1,29 @@
+<div class="all-content">
+    <h1>hello Platters</h1>
+
+
+<div class="my-container">
+    <div class="my-row">
+      <div class="search-hero">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;">
+      </div>
+      <div>
+        <div class="all-cards" *ngFor="let hero of heroes | filter:searchText">
+          <!-- card start -->
+        <mat-card class="example-card">
+            <img mat-card-image src="{{hero.src}}" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+            <h1>{{hero.name}}</h1>
+            <!-- <p>{{hero.}}</p> -->
+            <h3>R 50.00</h3>
+            </mat-card-content>
+            <mat-card-actions>
+            <button mat-button>View Product</button>
+            </mat-card-actions>
+        </mat-card>
+          <!-- end card -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
