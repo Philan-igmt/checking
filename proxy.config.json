@@ -1,0 +1,6 @@
+{
+    "/": {
+      "target": "http:locahost:3000/",
+      "changeOrigin": true
+    }
+  }

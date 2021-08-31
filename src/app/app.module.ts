@@ -39,7 +39,6 @@ import { CartComponent } from './component/cart/cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { MakeReviewComponent } from './component/make-review/make-review.component';
 import { MakeAppointmentComponent } from './component/make-appointment/make-appointment.component';
-import { ServicesComponent } from './component/services/services.component';
 import { AppointmentListComponent } from './component/appointment-list/appointment-list.component';
 import { GenerateQuoteComponent } from './component/generate-quote/generate-quote.component';
 import { QuotationListComponent } from './component/quotation-list/quotation-list.component';
@@ -67,6 +66,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { 
   AuthGuardService as AuthGuard 
 } from './auth/auth-guard.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './in-memory-data.service';
+import {GetPlattersService} from "./services/get-platters.service"
 
 @NgModule({
   declarations: [
@@ -89,7 +92,6 @@ import {
     CheckoutComponent,
     MakeReviewComponent,
     MakeAppointmentComponent,
-    ServicesComponent,
     AppointmentListComponent,
     GenerateQuoteComponent,
     QuotationListComponent,
@@ -137,10 +139,11 @@ import {
     MdbValidationModule,
     FormsModule,
     Ng2SearchPipeModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule,
     
   ],
-  providers: [ AuthGuard ],
+  providers: [ AuthGuard,GetPlattersService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

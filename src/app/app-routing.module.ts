@@ -11,7 +11,6 @@ import { PlattersComponent } from './component/platters/platters.component';
 import { RegisterComponent } from './component/register/register.component';
 import { RequestQuotationComponent } from './component/request-quotation/request-quotation.component';
 import { RestPasswordComponent } from './component/rest-password/rest-password.component';
-import { ServicesComponent } from './component/services/services.component';
 import { 
   AuthGuardService as AuthGuard 
 } from './auth/auth-guard.service';
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'platters', component: PlattersComponent },
   { path: 'history', component: OrderHistoryComponent},
   { path: 'quote', component: RequestQuotationComponent },
-  { path: 'services', component: ServicesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'contact', component: ContactComponent },

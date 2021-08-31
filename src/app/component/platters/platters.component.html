@@ -1,24 +1,31 @@
 <div class="all-content">
-    <h1>hello Platters</h1>
-
 
 <div class="my-container">
+  
     <div class="my-row">
-      <div class="search-hero">
-        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;">
-      </div>
-      <div>
-        <div class="all-cards" *ngFor="let hero of heroes | filter:searchText">
+      <div class="search-hero container">
+        <div class="left">
+           <h1 class="header text-success">View Platters</h1>
+        </div>
+        <div class="right">
+          <mat-icon class="search-icon" size="40px">search</mat-icon>
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+        </div>
+       
+       </div>
+      <div class="all-cards container">
+        <div class="each-card" *ngFor="let item of items | filter:searchText">
           <!-- card start -->
-        <mat-card class="example-card">
-            <img mat-card-image src="{{hero.src}}" alt="Photo of a Shiba Inu">
+        <mat-card class="product-card">
+            <img style="height: 200px;" mat-card-image src={{item.image}} alt="Photo of a Shiba Inu">
             <mat-card-content>
-            <h1>{{hero.name}}</h1>
-            <!-- <p>{{hero.}}</p> -->
-            <h3>R 50.00</h3>
+            <h1>{{item.name}}</h1>
+            <p>{{item.desc}}</p>
+            <h3>{{item.price}}</h3>
             </mat-card-content>
             <mat-card-actions>
-            <button mat-button>View Product</button>
+            <button class="btn btn-success" (click)="viewProduct(item)" mat-button>View Product</button>
+            <button class="btn btn-danger" (click)="addCart(item._id)" mat-button>Add to cart</button>
             </mat-card-actions>
         </mat-card>
           <!-- end card -->
@@ -26,4 +33,21 @@
       </div>
     </div>
   </div>
+  <h1 class="heading center">Items In Cart</h1>
+  <div class="all-cards container">
+    <div  class="card" *ngFor="let item of cart">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <h5 class="card-title">{{item.price}}</h5>
+          <div class="cart-btn">
+            <a href="#" class="btn btn-primary count">-</a>
+            <p class="count">{{item.count}}</p>
+          <a href="#" class="btn btn-primary count">+</a>
+          </div>
+          
+        </div>
+      </div>
+</div>
+
+<h1>Total {{total}}</h1>
 </div>

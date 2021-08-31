@@ -1,7 +1,40 @@
-.example-card {
+.product-card {
     max-width: 250px;
+    margin-top: 20px;
   }
 
 .all-cards{
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.search-hero{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.right{
+  display: flex;
+}
+.search-icon{
+  margin-right: 7px;
+  font-size: 40px;
+  width: 34px;
+}
+
+.heading{
+  text-align: center;
+}
+
+.cart-btn{
+  display: flex;
+}
+
+.count{
+  margin: 20px;
+  border: 2px solid black;
+  padding: 9px;
+  font-size: 28px;
+  border-radius: 10px;
 }
