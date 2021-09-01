@@ -14,18 +14,17 @@
        
        </div>
       <div class="all-cards container">
-        <div class="each-card" *ngFor="let item of items | filter:searchText">
+        <div class="each-card" *ngFor="let item of something | filter:searchText">
           <!-- card start -->
         <mat-card class="product-card">
             <img style="height: 200px;" mat-card-image src={{item.image}} alt="Photo of a Shiba Inu">
             <mat-card-content>
             <h1>{{item.name}}</h1>
-            <p>{{item.desc}}</p>
-            <h3>{{item.price}}</h3>
+            <p>{{item.description}}</p>
+            <h3>R{{item.price}}</h3>
             </mat-card-content>
             <mat-card-actions>
-            <button class="btn btn-success" (click)="viewProduct(item)" mat-button>View Product</button>
-            <button class="btn btn-danger" (click)="addCart(item._id)" mat-button>Add to cart</button>
+            <button class="btn btn-success" (click)="addCart(item._id)" mat-button>Add to cart</button>
             </mat-card-actions>
         </mat-card>
           <!-- end card -->
@@ -34,20 +33,59 @@
     </div>
   </div>
   <h1 class="heading center">Items In Cart</h1>
-  <div class="all-cards container">
-    <div  class="card" *ngFor="let item of cart">
+  <div class="all-cart-cards container">
+    <div  class="card cart-card" *ngFor="let item of cart">
         <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <h5 class="card-title">{{item.price}}</h5>
+          <h2 class="card-title">{{item.name}}</h2>
+          <h2 class="card-title">R{{item.price}}</h2>
           <div class="cart-btn">
-            <a href="#" class="btn btn-primary count">-</a>
+            <span href="#" class="btn btn-primary count" (click)="minus(item._id)">-</span>
             <p class="count">{{item.count}}</p>
-          <a href="#" class="btn btn-primary count">+</a>
+          <span href="#" class="btn btn-primary count" (click)="add(item._id)">+</span>
           </div>
-          
+          <button (click)="removeItem(item._id)"class="btn btn-danger">remove item</button>
         </div>
       </div>
 </div>
-
-<h1>Total {{total}}</h1>
+<h1>Total R{{total}}</h1>
+<div class="checkout-form">
+  <form [formGroup]='checkoutForm'>
+    <div class="full-form">
+      <div class="date">
+        <mat-form-field class="my-input" appearance="fill">
+          <mat-label>Street Address</mat-label>
+          <input formControlName="streetaddress"  placeholder="Wonder Park" matInput>
+        </mat-form-field>
+      </div>
+      <div class="date">
+        <mat-form-field class="my-input" appearance="fill">
+          <mat-label>City</mat-label>
+          <input formControlName="city" placeholder="Pretoria" matInput>
+        </mat-form-field>
+      </div>
+      <div class="date">
+        <mat-form-field class="my-input" appearance="fill">
+          <mat-label>Area</mat-label>
+          <input formControlName="area" placeholder="North"  matInput>
+        </mat-form-field>
+      </div>
+      <div class="date">
+        <mat-form-field class="my-input" appearance="fill">
+          <mat-label>Delivery date</mat-label>
+          <input formControlName="deliveryDate" placeholder="20-06-2021" matInput>
+        </mat-form-field>
+      </div>
+      <div class="date">
+        <mat-form-field class="my-input" appearance="fill">
+          <mat-label>Delivery time</mat-label>
+          <input formControlName="deliveryTime" placeholder="08:00 am" matInput>
+        </mat-form-field>
+      </div>
+      <div class="date">
+        <mat-form-field class="my-input" appearance="fill">
+          <input formControlName="option" placeholder="" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+    </form>
 </div>

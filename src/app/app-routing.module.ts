@@ -14,6 +14,8 @@ import { RestPasswordComponent } from './component/rest-password/rest-password.c
 import { 
   AuthGuardService as AuthGuard 
 } from './auth/auth-guard.service';
+import { AppointmentListComponent } from './component/appointment-list/appointment-list.component';
+import { AppointmentComponent } from './component/appointment/appointment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +28,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent},
   { path: 'resetpassowrd', component: RestPasswordComponent },
+  { path: 'appointments', component: AppointmentComponent },
   { path: '**', redirectTo: '' },
   // { path: '**', component:PageNotFoundComponentComponent },
 ];

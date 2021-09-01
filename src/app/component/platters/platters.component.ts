@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GetPlattersService } from "../../services/get-platters.service"
-
+// import axios from 'axios';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-platters',
   templateUrl: './platters.component.html',
@@ -9,91 +10,34 @@ import {GetPlattersService } from "../../services/get-platters.service"
 export class PlattersComponent implements OnInit {
   cart:any=[];
   total:number=0;
+  something:any=[];
+  picker:any;
+  // checkoutForm;
+  checkoutForm: FormGroup = new FormGroup({
+    streetaddress: new FormControl(),
+    city: new FormControl(),
+    area: new FormControl(),
+    deliveryDate: new FormControl(),
+    deliveryTime: new FormControl(),
+    option: new FormControl(),
+  });
   image = "https://picsum.photos/200/300";
   title :string= 'Angular Search Using ng2-search-filter';
   searchText:any;
-  items=[
-
-    {
-        count: 1,
-        _id: "612a4fdf9f57c92783d6437c",
-        name: "French dish 1",
-        price: 89,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612a4fdf9f57c92783d6437c",
-        name: "French dish 1",
-        price: 89,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612a4fdf9f57c92783d6437c",
-        name: "French dish 1",
-        price: 89,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612a4fdf9f57c92783d6437c",
-        name: "French dish 1",
-        price: 89,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612d2fe506f46ce19e7ad2cd",
-        name: "French dish 2",
-        price: 10000,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612d391706f46ce19e7ad2d0",
-        name: "French dish 3",
-        price: 10000,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612d391806f46ce19e7ad2d2",
-        name: "French dish 9",
-        price: 10000,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    },
-    {
-        count: 1,
-        _id: "612d391906f46ce19e7ad2d4",
-        name: "French dish 6",
-        price: 10000,
-        description: "this is a pizza",
-        image: "https://picsum.photos/200/300",
-        __v: 0
-    }
-]
 
   // private platters: GetPlattersService
   constructor(private platters: GetPlattersService) { }
 
   ngOnInit(): void {
-    this.getListOfPlatters();
-    this.addTotal()
+    this.platters.getAllPlatters().subscribe((data:any)=>{
+      console.log("This are the platters from the database",data);
+      this.something = data;
+
+    }) 
+  }
+
+  onSubmit(){
+    console.log("somethin has been pressed")
   }
 
   viewProduct(id:any){
@@ -105,39 +49,31 @@ export class PlattersComponent implements OnInit {
 
   }
   addCart = (id:any) => {
-  
+    
     const check = this.cart.every((item:any) => {
       return item._id !== id;
     });
     if (check) {
-      const data = this.items.filter((product) => {
+      const data = this.something.filter((product:any) => {
         return product._id === id;
       });
-      this.cart= [...this.cart, ...data];
-
-      const existing:any = localStorage.getItem("cart_data");
-      localStorage.setItem("cart_data", JSON.stringify(data));
-      existing.push(data)
-      localStorage.setItem("allEntries", JSON.stringify(existing));
-      // this.platters.platters.push([...data])
-      localStorage.setItem("cart_data", JSON.stringify([...data]));
-      this.platters.getAllPlatters()
+      this.cart= [...this.cart, ...data]
+      this.addTotal() ;
     } else {
       alert("item already selected");
-
-  };
+    }
   
   
 }
 
-add = (id:any) => {
+add = (id:String) => {
   const { cart } = this;
-  cart.forEach((item:any) => {
-    if (item._id === id) {
+  cart.forEach((item:any={}) => {
+    if (item._id == id) {
       item.count += 1;
     }
   });
-   this.cart= cart
+  this.cart= cart;
   this.addTotal();
 };
 
@@ -164,14 +100,13 @@ removeItem = (id:any) => {
 };
 
 addTotal = () => {
+
   const { cart } = this;
   const results = cart.reduce((prev:any, product:any) => {
     return prev + product.price * product.count;
   }, 0);
    this.total=results;
 };
-}// addCart(item:any){
-  //   this.cart.push(item)
-  //   console.log("the cart", this.cart)
-  // }
+}
+  
 

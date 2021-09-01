@@ -1,6 +1,7 @@
 .product-card {
     max-width: 250px;
     margin-top: 20px;
+    height: 500px;
   }
 
 .all-cards{
@@ -37,4 +38,26 @@
   padding: 9px;
   font-size: 28px;
   border-radius: 10px;
+}
+
+.cart-card{
+  border: 2px solid black;
+  width: 300px;
+}
+
+.all-cart-cards{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+}
+
+.full-form{
+  width: 55%;
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+}
+.my-input{
+  margin: 20px;
 }

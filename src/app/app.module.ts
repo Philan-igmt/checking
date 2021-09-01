@@ -63,13 +63,16 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatCardModule } from '@angular/material/card';
 import { PageNotFoundComponentComponent } from './component/page-not-found-component/page-not-found-component.component';
 import { ReactiveFormsModule } from '@angular/forms'
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { 
   AuthGuardService as AuthGuard 
 } from './auth/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService } from './in-memory-data.service';
-import {GetPlattersService} from "./services/get-platters.service"
+import {GetPlattersService} from "./services/get-platters.service";
+import { AppointmentComponent } from './component/appointment/appointment.component'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -111,7 +114,8 @@ import {GetPlattersService} from "./services/get-platters.service"
     EquipmentListComponent,
     ViewEquipmentComponent,
     EquepmentTypeComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -141,6 +145,8 @@ import {GetPlattersService} from "./services/get-platters.service"
     Ng2SearchPipeModule,
     MatCardModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatFormFieldModule
     
   ],
   providers: [ AuthGuard,GetPlattersService ],
