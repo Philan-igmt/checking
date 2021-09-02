@@ -73,6 +73,11 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import {GetPlattersService} from "./services/get-platters.service";
 import { AppointmentComponent } from './component/appointment/appointment.component'
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { AdminComponent } from './component/admin/admin.component';
+
 
 @NgModule({
   declarations: [
@@ -115,7 +120,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ViewEquipmentComponent,
     EquepmentTypeComponent,
     PageNotFoundComponentComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -146,7 +152,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCardModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatRadioModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule
+
     
   ],
   providers: [ AuthGuard,GetPlattersService ],

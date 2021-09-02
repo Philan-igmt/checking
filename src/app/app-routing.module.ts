@@ -16,6 +16,7 @@ import {
 } from './auth/auth-guard.service';
 import { AppointmentListComponent } from './component/appointment-list/appointment-list.component';
 import { AppointmentComponent } from './component/appointment/appointment.component';
+import { MakeAppointmentComponent } from './component/make-appointment/make-appointment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent},
   { path: 'resetpassowrd', component: RestPasswordComponent },
-  { path: 'appointments', component: AppointmentComponent },
+  { path: 'appointments', component: MakeAppointmentComponent},
   { path: '**', redirectTo: '' },
   // { path: '**', component:PageNotFoundComponentComponent },
 ];

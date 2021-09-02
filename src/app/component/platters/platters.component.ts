@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GetPlattersService } from "../../services/get-platters.service"
-// import axios from 'axios';
 import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-platters',
   templateUrl: './platters.component.html',
@@ -12,7 +12,18 @@ export class PlattersComponent implements OnInit {
   total:number=0;
   something:any=[];
   picker:any;
+
+  // values to send to the service
+  stAddress:string='';
+  city:string="";
+  area:string="";
+  deliveryDate:string="";
+  deliveryTime:string='';
+  option:string=""
+
+
   // checkoutForm;
+  seasons: string[] = ['Delivery', 'Collection'];
   checkoutForm: FormGroup = new FormGroup({
     streetaddress: new FormControl(),
     city: new FormControl(),
@@ -26,15 +37,42 @@ export class PlattersComponent implements OnInit {
   searchText:any;
 
   // private platters: GetPlattersService
-  constructor(private platters: GetPlattersService) { }
+  constructor(private platters: GetPlattersService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.platters.getAllPlatters().subscribe((data:any)=>{
-      console.log("This are the platters from the database",data);
       this.something = data;
-
     }) 
+
+    this.checkoutForm = this.formBuilder.group({
+        streetaddress: '',
+        city: '',
+        area: '',
+        deliveryDate: '',
+        deliveryTime: '',
+        option: '',
+    })
+
+    this.listenToValueChanges()
   }
+
+ // sending the bill form and the cart
+  onCheckout(){
+    this.platters.sendCartAndDeliveryAddress(this.stAddress,this.city,this.area,this.deliveryDate,this.deliveryTime,this.option,this.cart.name,this.total)
+  }
+
+  listenToValueChanges(){
+    this.checkoutForm.valueChanges.subscribe(value=>{
+      this.stAddress = value.streetaddress;
+      this.city = value.city;
+      this.area = value.area;
+      this.deliveryDate = value.deliveryDate;
+      this.deliveryTime = value.deliveryTime;
+      this.option = value.option
+    })
+    
+  }
+
 
   onSubmit(){
     console.log("somethin has been pressed")

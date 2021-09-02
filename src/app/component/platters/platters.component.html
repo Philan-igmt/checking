@@ -1,7 +1,7 @@
 <div class="all-content">
+<div class="my-container"> 
 
-<div class="my-container">
-  
+<!-- Platters -->
     <div class="my-row">
       <div class="search-hero container">
         <div class="left">
@@ -13,6 +13,7 @@
         </div>
        
        </div>
+       <!-- cards -->
       <div class="all-cards container">
         <div class="each-card" *ngFor="let item of something | filter:searchText">
           <!-- card start -->
@@ -29,9 +30,13 @@
         </mat-card>
           <!-- end card -->
         </div>
+        <!-- end of all cards -->
       </div>
     </div>
   </div>
+<!-- end of platters -->
+
+<!-- cart -->
   <h1 class="heading center">Items In Cart</h1>
   <div class="all-cart-cards container">
     <div  class="card cart-card" *ngFor="let item of cart">
@@ -47,8 +52,17 @@
         </div>
       </div>
 </div>
+<!-- end of cart -->
+
+<!-- displaying the total -->
 <h1>Total R{{total}}</h1>
+<!-- end of total -->
+
+<h1>This is the date picked{{datepicker}}</h1>
+
+<!-- checkout form -->
 <div class="checkout-form">
+  <h1 class="text-success" style="margin-left: 20%;">Delivery Address</h1>
   <form [formGroup]='checkoutForm'>
     <div class="full-form">
       <div class="date">
@@ -69,23 +83,45 @@
           <input formControlName="area" placeholder="North"  matInput>
         </mat-form-field>
       </div>
+      
       <div class="date">
-        <mat-form-field class="my-input" appearance="fill">
-          <mat-label>Delivery date</mat-label>
-          <input formControlName="deliveryDate" placeholder="20-06-2021" matInput>
+        <mat-form-field appearance="fill" class="example-form-field">
+          <mat-label>Choose a date</mat-label>
+          <input formControlName="deliveryDate" matInput [matDatepicker]="datepicker">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
         </mat-form-field>
       </div>
+
       <div class="date">
-        <mat-form-field class="my-input" appearance="fill">
-          <mat-label>Delivery time</mat-label>
-          <input formControlName="deliveryTime" placeholder="08:00 am" matInput>
-        </mat-form-field>
+       
+          <input formControlName="deliveryTime"  placeholder="Time" form [ngxTimepicker]="picker">
+          <ngx-material-timepicker #picker></ngx-material-timepicker>
+
       </div>
+      
       <div class="date">
-        <mat-form-field class="my-input" appearance="fill">
-          <input formControlName="option" placeholder="" matInput>
-        </mat-form-field>
+        <div>
+          <label id="example-radio-group-label">Delivery Option</label>
+        </div>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          formControlName="option">
+          <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+            {{season}}
+          </mat-radio-button>
+        </mat-radio-group>
       </div>
     </div>
     </form>
+    <div class="checkout-btn" style="margin-left: 20%;">
+      <button (click)="onCheckout()" class="btn btn-success">Checkout</button>
+    </div>
+    
 </div>
