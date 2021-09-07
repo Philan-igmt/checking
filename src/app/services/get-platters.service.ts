@@ -12,13 +12,17 @@ export class GetPlattersService {
   constructor(private httpClient: HttpClient) { }
   platters:any=[];
   postId:any='';
+  register:any=''
   private REST_API_SERVER = "http://localhost:5000/platters";
   private REST_API_SERVER2 = "http://localhost:5000/cart/billing";
   private REST_API_SERVER3 = "http://localhost:5000/appointment";
+  private REST_API_SERVER4 = "http://localhost:5000/register";
 
   public getAllPlatters(){
     return this.httpClient.get(this.REST_API_SERVER);
   }
+
+
   public sendCartAndDeliveryAddress(street:string,city:string,area:string,deliveryDate:string,deliveryTime:string,option:string,cart:any=[],total:number){
     return this.httpClient.post<any>(this.REST_API_SERVER2, {
       streetaddress:street,
@@ -47,6 +51,18 @@ export class GetPlattersService {
     }).subscribe(data => {
       this.postId = data;
       console.log("this is the post id",this.postId)
+  })
+  }
+  public registerUser(email:string,username:string,password:string,passwordConf:string){
+    return this.httpClient.post<any>(this.REST_API_SERVER4, {
+      email:email,
+      username:username,
+      password:password,
+      passwordConf:passwordConf,
+    
+    }).subscribe(data => {
+      this.register = data;
+      console.log("this is the register data",this.register)
   })
   }
 
