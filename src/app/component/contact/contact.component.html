@@ -1,24 +1,27 @@
-<!-- <div class="contact-us">
+<div class="contact-us">
     <div class="left">
         <h1 class="heading">Contact Us</h1>
         <p class="desc">We would like to hear from you.</p>
-        <form class="example-form">
+        <form [formGroup]="contactForm" class="example-form">
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
-            <input type="text" placeholder="Chulumanco" matInput>
+            <input type="text" placeholder="Chulumanco" formControlName="name" matInput>
           </mat-form-field>
+          <p *ngIf="contactForm.controls.name.errors && contactForm.controls.name.touched">Please make sure your have 3 or more characters</p> 
           <br>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="chulumanco@cyadla.food">
+            <input type="email" matInput placeholder="chulumanco@cyadla.food" formControlName="email">
           </mat-form-field>
+          <p *ngIf="contactForm.controls.email.errors && contactForm.controls.email.touched">Please make sure your email is correct!</p> 
           <br>
           <mat-form-field appearance="fill">
             <mat-label>Message</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput formControlName="message"></textarea>
           </mat-form-field>
+          <p *ngIf="contactForm.controls.message.errors && contactForm.controls.message.touched">Please write something as your message!</p>
           <br>
-          <button class="btn btn-success contact-submit">Send</button>
+          <button [disabled]="!contactForm.valid" class="btn btn-success contact-submit">Send</button>
         </form>
     </div>
     <div class="right">
@@ -35,9 +38,9 @@
             <mat-icon><a href="#"><img src="https://img.icons8.com/material/24/000000/instagram.png"/></a></mat-icon>
         </div>
     </div>
-</div> -->
-<form id="contactform" action="https://formspree.io/f/xdoyyezk" method="POST">    <input type="text" name="name" placeholder="Your name">
+</div>
+<!-- <form id="contactform" action="https://formspree.io/f/xdoyyezk" method="POST">    <input type="text" name="name" placeholder="Your name">
   <input type="email" name="_replyto" placeholder="Your email">
   <textarea name="message" placeholder="Your message"></textarea>
   <input type="submit" value="Send">
-</form><div class="open_grepper_editor" title="Edit & Save To Grepper"></div>
+</form><div class="open_grepper_editor" title="Edit & Save To Grepper"></div> -->
