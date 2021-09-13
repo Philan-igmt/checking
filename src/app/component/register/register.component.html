@@ -8,11 +8,17 @@
           <mat-label>Email</mat-label>
           <input type="email" matInput formControlName="email" placeholder="chulumanco@cyadla.food">
         </mat-form-field>
+        <p *ngIf="registerForm.controls.email.errors && registerForm.controls.email.touched">Please make sure your email is correct!</p> 
+
+
+
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Username</mat-label>
           <input type="text" matInput formControlName="username" placeholder="chulumanco">
         </mat-form-field>
+        <p *ngIf="registerForm.controls.username.errors && registerForm.controls.username.touched">Please make sure your username have 5 or more characters!</p> 
         <br>
+
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
           <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
@@ -20,6 +26,8 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </span>
         </mat-form-field>
+        <div *ngIf="registerForm.controls.password.errors && registerForm.controls.password.touched">Password must contain a capital letter, small letters, numbers and special characters and the length of the password should be 8 characters</div> 
+
         <mat-form-field appearance="fill">
           <mat-label>Re-enter Password</mat-label>
           <input formControlName="passwordConf" matInput [type]="hide ? 'password' : 'text'">
@@ -27,11 +35,16 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </span>
         </mat-form-field>
+        <div *ngIf="registerForm.controls.password.errors && registerForm.controls.password.touched">Password must contain a capital letter, small letters, numbers and special characters and the length of the password should be 8 characters</div> 
+        <div *ngIf="registerForm.controls.passwordConf.value!==registerForm.controls.password.value && registerForm.controls.passwordConf.touched">Please make sure your password matches</div> 
+
+
+
     </form>
       
           <br>
           <div class="sub-btn"> 
-            <button type="button" (click)="registerUser()" class="btn btn-success btn-sm btn-rounded">Submit</button>
+            <button type="button"  (click)="registerUser()" [disabled]="!registerForm.valid" class="btn btn-success btn-sm btn-rounded">Submit</button>
           </div>
           <div class="question">
               <p>Already have an account?<a href="/login">Login</a></p>

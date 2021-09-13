@@ -11,24 +11,31 @@
                           <mat-label>Name</mat-label>
                           <input formControlName="name"  placeholder="Wonder Park" matInput>
                         </mat-form-field>
+                        <p *ngIf="appointmentForm.controls.name.errors && appointmentForm.controls.name.touched">Please make sure your name have 5 or more characters!</p> 
+
                       </div>
                       <div class="date">
                         <mat-form-field class="my-input" appearance="fill">
                           <mat-label>Surname</mat-label>
                           <input formControlName="surname" placeholder="Pretoria" matInput>
                         </mat-form-field>
+                        <p *ngIf="appointmentForm.controls.surname.errors && appointmentForm.controls.surname.touched">Please make sure your surname have 5 or more characters!</p> 
+
                       </div>
                       <div class="date">
                         <mat-form-field class="my-input" appearance="fill">
                           <mat-label>Email</mat-label>
                           <input formControlName="email" placeholder="North" type="email"  matInput>
                         </mat-form-field>
+                        <p *ngIf="appointmentForm.controls.email.errors && appointmentForm.controls.email.touched">Please make sure your email is correct!</p> 
+
                       </div>
                       <div class="date">
                         <mat-form-field class="my-input" appearance="fill">
                           <mat-label>Cellphone Number</mat-label>
                           <input formControlName="cellphoneNumber" placeholder="North" type="email"  matInput>
                         </mat-form-field>
+                        <p *ngIf="appointmentForm.controls.cellphoneNumber.errors && appointmentForm.controls.cellphoneNumber.touched">Please make sure your Cell number is correct, should have at least 10 numbers</p> 
                       </div>
                 </div>
         
@@ -44,13 +51,14 @@
                         </mat-datepicker-actions>
                       </mat-datepicker>
                     </mat-form-field>
+                    <p *ngIf="appointmentForm.controls.slot.errors && appointmentForm.controls.slot.touched">Please make sure you select a valid slot</p> 
                   </div>
             
                   <div class="date">
-                   
+                    <mat-label>Choose a time slot</mat-label>
                       <input formControlName="slot"  placeholder="Time" form [ngxTimepicker]="picker">
                       <ngx-material-timepicker #picker></ngx-material-timepicker>
-            
+                      <p *ngIf="appointmentForm.controls.slot.errors && appointmentForm.controls.slot.touched">Please make sure you select a valid slot</p> 
                   </div>
                   
                   <div class="date">
@@ -72,7 +80,7 @@
                       <input formControlName="reason" placeholder="North" type="email"  matInput>
                     </mat-form-field>
                   </div>
-                  <button (click)="bookAppointment()" class="btn btn-success">book appointment</button>
+                  <button (click)="bookAppointment()" [disabled]="!appointmentForm.valid" class="btn btn-success">book appointment</button>
                 </div>
                 </form>
                 

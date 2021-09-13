@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GetPlattersService } from "../../services/get-platters.service"
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -32,13 +32,28 @@ export class MakeAppointmentComponent implements OnInit {
   ngOnInit(): void {
 
     this.appointmentForm = this.formBuilder.group({
-      name: '',
-      surname: '',
-      email:'',
-      cellphoneNumber: '',
-      option:'',
-      reason: '',
-      slot: '',
+      name:['',[
+        Validators.minLength(5),
+        Validators.required
+      ]],
+      surname: ['',[
+        Validators.minLength(5),
+        Validators.required
+      ]],
+      email:['', [Validators.required, Validators.email]],
+      cellphoneNumber:["",[
+        Validators.required,
+        Validators.pattern("[0-9 ]{9}")
+      ]],
+      option:['',[
+        Validators.required
+      ]],
+      reason:['',[
+        Validators.required
+      ]],
+      slot:['',[
+        Validators.required
+      ]],
   })
     this.listenToValueChanges()
   }
