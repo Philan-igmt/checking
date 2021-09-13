@@ -44,7 +44,7 @@
       
           <br>
           <div class="sub-btn"> 
-            <button type="button"  (click)="registerUser()" [disabled]="!registerForm.valid" class="btn btn-success btn-sm btn-rounded">Submit</button>
+            <button type="button" (click)="onSubmit()" [disabled]="!registerForm.valid" class="btn btn-success btn-sm btn-rounded">Submit</button>
           </div>
           <div class="question">
               <p>Already have an account?<a href="/login">Login</a></p>

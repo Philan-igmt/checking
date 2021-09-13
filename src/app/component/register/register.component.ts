@@ -9,11 +9,6 @@ import {GetPlattersService } from "../../services/get-platters.service"
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  email:string=''
-  username: string=''
-  password:string=''
-  passwordConf: string=''
-
 registerForm: FormGroup = new FormGroup({
   email: new FormControl(),
   username: new FormControl(),
@@ -53,15 +48,17 @@ registerForm: FormGroup = new FormGroup({
   }
   listenToValueChanges(){
     this.registerForm.valueChanges.subscribe(value=>{
-        this.email=value.email
-        this.username=value.username
-        this.password=value.password
-        this.passwordConf=value.passwordConf
         console.log(value)
     })
   }
+
+  onSubmit=()=>{
+    this.registerUser()
+   this. clearInputsAfterSubmit()
+
+  }
   registerUser(){
-    this.user.registerUser(this.email,this.username,this.password,this.passwordConf);
+    this.user.registerUser(this.registerForm.value.email,this.registerForm.value.username,this.registerForm.value.password,this.registerForm.value.passwordConf);
     // this.clearInputsAfterSubmit();
   }
 
